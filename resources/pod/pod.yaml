@@ -6,6 +6,7 @@ spec:
   containers:
     - name: jnlp
       image: "jenkins/inbound-agent:latest"
+      workingDir: "/home/jenkins/agent"
     - name: docker
       image: "docker:27.3.1-dind-alpine3.20"
       volumeMounts:
@@ -17,4 +18,3 @@ spec:
     - name: "workspace"
       persistentVolumeClaim:
         claimName: "jenkins-home-data"
-# /opt/jenkins_home
