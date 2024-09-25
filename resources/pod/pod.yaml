@@ -14,6 +14,8 @@ spec:
           readOnly: false
           mountPath: /home/jenkins/agent
       workingDir: "/home/jenkins/agent"
+      securityContext:
+        privileged: true
   volumes:
     - name: "workspace"
       persistentVolumeClaim:
