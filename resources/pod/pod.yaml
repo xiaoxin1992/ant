@@ -1,6 +1,20 @@
 apiVersion: v1
 kind: Pod
+metadata:
+  namespace: kube-ops
 spec:
   containers:
     - name: jnlp
-      image: "docker.io/jenkins/inbound-agent:latest"
+      image: "jenkins/inbound-agent:latest"
+    - name: docker
+      image: "docker:27.3.1-dind-alpine3.20"
+      volumeMounts:
+        - name: "workspace"
+          readOnly: false
+          mountPath: /home/jenkins/agent
+      workingDir: "/home/jenkins/agent"
+  volumes:
+    - name: "workspace"
+      persistentVolumeClaim:
+        claimName: "jenkins-home-data"
+# /opt/jenkins_home
