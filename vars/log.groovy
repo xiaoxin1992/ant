@@ -5,3 +5,7 @@ def info(message) {
 def warning(message) {
     echo "WARNING: ${message}"
 }
+
+def clone(String branchName, String credentialsId, String address) {
+    git branch: "${branchName}", credentialsId: "${credentialsId}", url: "${address}"
+}
