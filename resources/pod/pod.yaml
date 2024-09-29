@@ -8,7 +8,9 @@ metadata:
 spec:
   containers:
     - name: "my-nginx"
-      image: "nginx:1.27.1"
+      image: "harbor.dyness.cn/base/docker:dind"
+      securityContext:
+        privileged: true
     - env:
         - name: "LANGUAGE"
           value: "en_US:en"
