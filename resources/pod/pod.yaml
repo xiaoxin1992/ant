@@ -28,27 +28,6 @@ spec:
           name: "workspace"
           readOnly: false
       workingDir: "/home/jenkins/agent"
-    - env:
-        - name: "LANGUAGE"
-          value: "en_US:en"
-        - name: "LC_ALL"
-          value: "en_US.UTF-8"
-        - name: "LANG"
-          value: "en_US.UTF-8"
-      image: "docker:27.3.1-dind"
-      imagePullPolicy: "IfNotPresent"
-      name: "dind"
-      securityContext:
-        privileged: true
-      tty: true
-      volumeMounts:
-        - mountPath: "/etc/localtime"
-          name: "localtime"
-          readOnly: false
-        - mountPath: "/home/jenkins/agent"
-          name: "workspace"
-          readOnly: false
-      workingDir: "/home/jenkins/agent"
   hostNetwork: false
   nodeSelector:
     kubernetes.io/os: "linux"
