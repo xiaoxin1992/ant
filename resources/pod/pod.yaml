@@ -14,11 +14,11 @@ spec:
           mountPath: "/home/jenkins/agent"
     - name: docker
       image: "docker:27.3.1-dind"
-      workingDir: "/home/jenkins/agent"
-      volumeMounts:
-        - name: "workspace"
-          readOnly: false
-          mountPath: "/home/jenkins/agent"
+#      workingDir: "/home/jenkins/agent"
+#      volumeMounts:
+#        - name: "workspace"
+#          readOnly: false
+#          mountPath: "/home/jenkins/agent"
       securityContext:
         privileged: true
       tty: true
