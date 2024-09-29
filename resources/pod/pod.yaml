@@ -6,21 +6,21 @@ spec:
   containers:
     - name: jnlp
       image: "jenkins/inbound-agent:latest"
-      workingDir: "/home/jenkins/agent"
-      volumeMounts:
-        - name: "workspace"
-          readOnly: false
-          mountPath: "/home/jenkins/agent"
-    - name: docker
-      image: "docker:27.3.1-dind-alpine3.20"
-      workingDir: "/home/jenkins/agent"
-      volumeMounts:
-        - name: "workspace"
-          readOnly: false
-          mountPath: "/home/jenkins/agent"
-      securityContext:
-        privileged: true
-  volumes:
-    - name: "workspace"
-      persistentVolumeClaim:
-        claimName: "jenkins-home-data"
+#      workingDir: "/home/jenkins/agent"
+#      volumeMounts:
+#        - name: "workspace"
+#          readOnly: false
+#          mountPath: "/home/jenkins/agent"
+#    - name: docker
+#      image: "docker:27.3.1-dind-alpine3.20"
+#      workingDir: "/home/jenkins/agent"
+#      volumeMounts:
+#        - name: "workspace"
+#          readOnly: false
+#          mountPath: "/home/jenkins/agent"
+#      securityContext:
+#        privileged: true
+#  volumes:
+#    - name: "workspace"
+#      persistentVolumeClaim:
+#        claimName: "jenkins-home-data"
