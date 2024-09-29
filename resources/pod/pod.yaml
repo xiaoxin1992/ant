@@ -11,6 +11,7 @@ spec:
       image: "docker:dind"
       securityContext:
         privileged: true
+      tty: true
     - env:
         - name: "LANGUAGE"
           value: "en_US:en"
