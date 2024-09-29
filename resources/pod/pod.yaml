@@ -4,7 +4,6 @@ metadata:
   labels:
     jenkins: "slave"
     app: "jenkins_home"
-  name: test100
   namespace: "kube-ops"
 spec:
   containers:
