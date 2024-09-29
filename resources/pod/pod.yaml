@@ -7,6 +7,7 @@ spec:
     - name: jnlp
       image: "jenkins/inbound-agent:latest"
       workingDir: "/home/jenkins/agent"
+      tty: true
       volumeMounts:
         - name: "workspace"
           readOnly: false
