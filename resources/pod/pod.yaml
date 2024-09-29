@@ -7,6 +7,8 @@ metadata:
   namespace: "kube-ops"
 spec:
   containers:
+    - name: "my-nginx"
+      image: "nginx:1.27.1"
     - env:
         - name: "LANGUAGE"
           value: "en_US:en"
@@ -17,8 +19,6 @@ spec:
       image: "jenkins/inbound-agent:latest"
       imagePullPolicy: "IfNotPresent"
       name: "jnlp"
-      securityContext:
-        privileged: true
       tty: true
       volumeMounts:
         - mountPath: "/etc/localtime"
