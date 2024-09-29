@@ -1,18 +1,66 @@
-apiVersion: v1
-kind: Pod
+apiVersion: "v1"
+kind: "Pod"
 metadata:
-  namespace: kube-ops
+  labels:
+    jenkins: "slave"
+    app: "jenkins_home"
+  namespace: "kube-ops"
 spec:
   containers:
-    - name: jnlp
+    - env:
+        - name: "LANGUAGE"
+          value: "en_US:en"
+        - name: "LC_ALL"
+          value: "en_US.UTF-8"
+        - name: "LANG"
+          value: "en_US.UTF-8"
       image: "jenkins/inbound-agent:latest"
-      tty: true
-    - name: docker
-      image: "docker:27.3.1-dind"
+      imagePullPolicy: "IfNotPresent"
+      name: "jnlp"
       securityContext:
         privileged: true
       tty: true
+      volumeMounts:
+        - mountPath: "/etc/localtime"
+          name: "localtime"
+          readOnly: false
+        - mountPath: "/home/jenkins/agent"
+          name: "workspace"
+          readOnly: false
+      workingDir: "/home/jenkins/agent"
+    - env:
+        - name: "LANGUAGE"
+          value: "en_US:en"
+        - name: "LC_ALL"
+          value: "en_US.UTF-8"
+        - name: "LANG"
+          value: "en_US.UTF-8"
+      image: "docker:27.3.1-dind"
+      imagePullPolicy: "IfNotPresent"
+      name: "dind"
+      securityContext:
+        privileged: true
+      tty: true
+      volumeMounts:
+        - mountPath: "/etc/localtime"
+          name: "localtime"
+          readOnly: false
+        - mountPath: "/home/jenkins/agent"
+          name: "workspace"
+          readOnly: false
+      workingDir: "/home/jenkins/agent"
+  hostNetwork: false
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  serviceAccountName: "jenkins"
   volumes:
+    - hostPath:
+        path: "/usr/share/zoneinfo/Asia/Shanghai"
+      name: "localtime"
     - name: "workspace"
       persistentVolumeClaim:
         claimName: "jenkins-home-data"
+    - emptyDir:
+        medium: ""
+      name: "workspace-volume"
