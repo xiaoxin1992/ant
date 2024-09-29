@@ -4,11 +4,12 @@ metadata:
   labels:
     jenkins: "slave"
     app: "jenkins_home"
+  name: test100
   namespace: "kube-ops"
 spec:
   containers:
     - name: "my-nginx"
-      image: "harbor.dyness.cn/base/docker:dind"
+      image: "docker:dind"
       securityContext:
         privileged: true
     - env:
