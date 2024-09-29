@@ -20,6 +20,7 @@ spec:
           mountPath: "/home/jenkins/agent"
       securityContext:
         privileged: true
+      tty: true
   volumes:
     - name: "workspace"
       persistentVolumeClaim:
